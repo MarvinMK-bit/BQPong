@@ -3,7 +3,7 @@ import random, string
 from random import randrange
 import time
 
-import cv2
+#import cv2
 
 import qiskit
 from qiskit import execute, Aer
@@ -100,7 +100,7 @@ if start == 'PLAY':
     for i in range(8):
         a=randrange(2)
         key.append(a)
-    print('Let me tell you a secret random key :',key)
+    print('Let me tell you a secret random key : ____')
     #Guess the random key
     print('Time to guess the random key...')
     print()
