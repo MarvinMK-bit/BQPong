@@ -177,7 +177,7 @@ if start == 'PLAY':
               
         if player_two_tries < 8:
             print("PLAYER 2's TURN")
-            print('Try Number ' + str(player_one_tries))
+            print('Try Number ' + str(player_two_tries))
             print()
             print('...')
             print()
@@ -213,12 +213,11 @@ if start == 'PLAY':
                             print('You guessed correctly!')
                             player_two_score += 1
                             player_two_guesses_quantum[i] = 1
-                            print('player_two_guesses_quantum is ',player_two_guesses_quantum)
                             time.sleep(1)
                         else:
                             print('You guessed wrong')
-                            print('player_two_guesses_quantum is ',player_two_guesses_quantum)
                             time.sleep(1)
+                print('player_two_guesses_quantum is ',player_two_guesses_quantum)
                 player_two_tries += 1
             print()
         print()
@@ -347,11 +346,7 @@ if start == 'PLAY':
                 for n in range(len(player_one_guesses)):
                     if player_one_guesses[n]==1:
                         mycircuitB.x(qregB[n])
-            else:
-                for n in range(len(player_one_guesses_quantum)):
-                    if player_one_guesses_quantum[n]==1:
-                        mycircuitB.x(qregB[n])
-    
+
             mycircuitB.barrier()
 
             mycircuitB.measure(qregB,cregB)
@@ -383,7 +378,7 @@ if start == 'PLAY':
     else:
         print('Player 1 loses :/')
         
-    if player_two_score == 8:
+    if player_two_guesses_quantum == key:
         print('Player 2 seems to have won. Let us try to check if he guessed the correct \n random key in the next level of the game')
         time.sleep(1)
         print('L.E.V.E.L T.W.O CHECKER')
@@ -466,16 +461,9 @@ if start == 'PLAY':
             # Hence random key should have been shared between Alice and Bob classically with RSA or via 
             # a quantum network using BB84
 
-            
-                  
-            if len(player_two_guesses) == 8:
-                for n in range(len(player_two_guesses)):
-                    if player_two_guesses[n]==1:
-                        mycircuitB.x(qregB[n])
-            else:
-                for n in range(len(player_two_guesses_quantum)):
-                    if player_two_guesses_quantum[n]==1:
-                        mycircuitB.x(qregB[n])    
+            for n in range(len(player_two_guesses_quantum)):
+                if player_two_guesses_quantum[n]==1:
+                    mycircuitB.x(qregB[n])    
     
             mycircuitB.barrier()
 
