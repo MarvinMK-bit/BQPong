@@ -71,6 +71,7 @@ print()
 print('START GAME')
 print()
 print('L.E.V.E.L O.N.E')
+print()
 
 print('In this part of the game you will guess the random key \n used to encode the Bitcoin key being sent')
 print()
@@ -83,9 +84,7 @@ player_one_score = 0
 player_two_score = 0
 
 player_one_guesses = []
-player_one_guesses_quantum = [0,0,0,0,0,0,0,0]
       
-player_two_guesses = []
 player_two_guesses_quantum = [0,0,0,0,0,0,0,0]
 
 start = input()
@@ -104,7 +103,11 @@ if start == 'PLAY':
     #Guess the random key
     print('Time to guess the random key...')
     print()
-    print('NOTE: Stick to the choice you choose in the beginning\n whether to choose randomly or with a quamtum computer\n to avoid errors!')
+    print('NOTE: Player 1 will use random guessing\n while Player 2 will use a quantum computer to\n do the guessing.')
+    print('You got this ;-)')
+    time.sleep(2)
+    print('GOOD lUCK!')
+    print()
     time.sleep(1)
           
     while player_one_tries < 8:
@@ -139,41 +142,7 @@ if start == 'PLAY':
                 print('You guessed wrong')
                 time.sleep(1)
             player_one_tries += 1
-
-        if choice == '2':
-            #Guess the random key
-            #time.sleep(1)
-            target_in_key = int(input('Type one number between 0 and 7, 0 and 7 included, \n as your target that you think contains a value "1": '))
-            
-            circuit = qiskit.QuantumCircuit(3,3)
-
-            target_in_gate = int(input('Given only a hadamard gate, which qubit in a 3-qubit circuit will you put it on to \n capture the above value and its neighbours? Type 0, 1 or 2: '))
-
-            circuit.h(target_in_gate)
-
-            circuit.measure(range(3),range(3))
-
-            job = execute(circuit, Aer.get_backend('qasm_simulator'),shots=1000)
-            counts = job.result().get_counts()
-
-            format_string = '0' + str(3) + 'b'
-
-            for i in range(len(key)):
-                if key[i] == 1:
-                    binary_value = format(i, format_string)
-                    if binary_value in counts:
-                        print('You guessed correctly!')
-                        player_one_score += 1
-                        player_one_guesses_quantum[i] = 1
-                        print('player_one_guesses_quantum is ',player_one_guesses_quantum)
-                        time.sleep(1)
-                    else:
-                        print('You guessed wrong')
-                        time.sleep(1)
-
-            player_one_tries += 1
-                
-            
+                            
         print()
         print()
         print()
@@ -216,30 +185,6 @@ if start == 'PLAY':
             print('A wrong choice will make you lose your turn')
             choice = input('Type your choice: ')
 
-            if choice == '1':
-                #Guess the random key
-                #time.sleep(1)
-                if player_two_tries == 0:
-                    x = int(input('Type the first digit of the random key you have guessed: '))
-                    player_two_guesses.append(x)
-                elif player_two_tries == 7:
-                    x = int(input('Type the last digit of the random key : '))
-                    player_two_guesses.append(x)
-                else:
-                    x = int(input('Type the next digit of the random key : '))
-                    player_two_guesses.append(x)
-
-                print('player_two_guesses is ',player_two_guesses)
-                
-                if player_two_guesses[player_two_tries] == key[player_two_tries]:
-                    print('You guessed correctly!')
-                    player_two_score += 1
-                    time.sleep(1)
-                else:
-                    print('You guesses wrong')
-                    time.sleep(1)
-                player_two_tries += 1
-
             if choice == '2':
                 #Guess the random key
                 #time.sleep(1)
@@ -247,9 +192,12 @@ if start == 'PLAY':
             
                 circuit = qiskit.QuantumCircuit(3,3)
 
-                target_in_gate = int(input('Given only a hadamard gate, which qubit in a 3-qubit circuit will you put it on to \n capture the above value and its neighbours? Type 0, 1 or 2: '))
+                target_one_in_gate = int(input('Given only a hadamard gate,\n which one of two qubits in a 3-qubit circuit will you put them on to \n capture the above value and its neighbours?\n Type one correct entry from the set {0, 1, 2}: '))
+                print('OK, now')
+                target_two_in_gate = int(input('Given only a hadamard gate,\n which second one of two qubits in a 3-qubit circuit will you put them on to \n capture the above value and its neighbours?\n Type another correct entry from the set {0, 1, 2}: '))
 
-                circuit.h(target_in_gate)
+                circuit.h(target_one_in_gate)
+                circuit.h(target_two_in_gate)
 
                 circuit.measure(range(3),range(3))
 
@@ -268,7 +216,8 @@ if start == 'PLAY':
                             print('player_two_guesses_quantum is ',player_two_guesses_quantum)
                             time.sleep(1)
                         else:
-                            print('You guesses wrong')
+                            print('You guessed wrong')
+                            print('player_two_guesses_quantum is ',player_two_guesses_quantum)
                             time.sleep(1)
                 player_two_tries += 1
             print()
