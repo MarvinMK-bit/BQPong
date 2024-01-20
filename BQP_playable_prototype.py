@@ -194,7 +194,7 @@ if start == 'PLAY':
                 #Guess the random key
                 circuit = qiskit.QuantumCircuit(3,3)
                 
-                print('You are given either an NOT/X gate or an Hadamard/H gate.\n Type 'X' or 'H' to pick the gate you will use,\n or you will miss your turn')
+                print("You are given either an NOT/X gate or an Hadamard/H gate.\n Type 'X' or 'H' to pick the gate you will use,\n or you will miss your turn")
                 #time.sleep(3)
         
                 ans = input(' Answer: ')
