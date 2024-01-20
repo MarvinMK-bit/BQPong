@@ -34,22 +34,22 @@ from math import pi
 print('Sometime in the future, many countries are at war.\n People who want to send bitcoin keys to their families overseas can only do so in secret.\n The internet is long gone. Commandline style programs are the only thing left.')
 print('...')
 print()
-time.sleep(5)
+time.sleep(7)
 
 print('Sending the keys across quantum secure channels is done using Quantum One Time Pads\n but sending the random encryption key has to be done classically,\n which is unsafe.')
 print('...')
 print()
-time.sleep(5)
+time.sleep(7)
 
 print('The only alternative is to guess the random key \n in as few tries as possible, see the bitcoins and secure them\n before an eavesdropper notices anything.')
 print('...')
 print()
-time.sleep(5)
+time.sleep(7)
 
 print('To test guessing capibilities, a guessing-pong game is created.')
 print('...')
 print()
-time.sleep(5)
+time.sleep(6)
 
 print('Will you be the winner?')
 print('...')
@@ -113,6 +113,8 @@ if start == 'PLAY':
     while player_one_tries < 8:
         print("PLAYER 1's TURN")
         print('Try Number ' + str(player_one_tries))
+        print('Guessing circuitry ---> Classical guessing along a number line')
+        print('---#---#---#---#---#---#---#---#---')
         print()
         print('...')
         print()
@@ -178,6 +180,9 @@ if start == 'PLAY':
         if player_two_tries < 8:
             print("PLAYER 2's TURN")
             print('Try Number ' + str(player_two_tries))
+            print('Guessing circuitry ---> Quantum circuit')
+            print('q0-----------------')
+            print('q1-----------------')
             print()
             print('...')
             print()
@@ -187,17 +192,25 @@ if start == 'PLAY':
 
             if choice == '2':
                 #Guess the random key
-                #time.sleep(1)
-                target_in_key = int(input('Type one number between 0 and 7, 0 and 7 included, \n as your target that you think contains a value "1": '))
-            
                 circuit = qiskit.QuantumCircuit(3,3)
+                
+                print('You are given either an NOT/X gate or an Hadamard/H gate.\n Type 'X' or 'H' to pick the gate you will use,\n or you will miss your turn')
+                #time.sleep(3)
+        
+                ans = input(' Answer: ')
+                if ans == 'X':
+                    target_one_in_gate = int(input('Given an X gate,\n which one of two qubits in a 3-qubit circuit will you put them on to \n capture a value and its neighbours equal to '1' ?\n Type one correct entry from the set {0, 1, 2}: '))
+                    print('OK, now')
+                    target_two_in_gate = int(input('Given an X gate,\n which second one of two qubits in a 3-qubit circuit will you put them on to \n capture a value and its neighbours equal to '1'?\n Type another correct entry from the set {0, 1, 2}: '))
+                    circuit.x(target_one_in_gate)
+                    circuit.x(target_two_in_gate)
 
-                target_one_in_gate = int(input('Given only a hadamard gate,\n which one of two qubits in a 3-qubit circuit will you put them on to \n capture the above value and its neighbours?\n Type one correct entry from the set {0, 1, 2}: '))
-                print('OK, now')
-                target_two_in_gate = int(input('Given only a hadamard gate,\n which second one of two qubits in a 3-qubit circuit will you put them on to \n capture the above value and its neighbours?\n Type another correct entry from the set {0, 1, 2}: '))
-
-                circuit.h(target_one_in_gate)
-                circuit.h(target_two_in_gate)
+                if ans == 'H':
+                    target_one_in_gate = int(input('Given an H gate,\n which one of two qubits in a 3-qubit circuit will you put them on to \n capture a value and its neighbours equal to '1' ?\n Type one correct entry from the set {0, 1, 2}: '))
+                    print('OK, now')
+                    target_two_in_gate = int(input('Given an H gate,\n which second one of two qubits in a 3-qubit circuit will you put them on to \n capture a value and its neighbours equal to '1'?\n Type another correct entry from the set {0, 1, 2}: '))
+                    circuit.h(target_one_in_gate)
+                    circuit.h(target_two_in_gate)
 
                 circuit.measure(range(3),range(3))
 
