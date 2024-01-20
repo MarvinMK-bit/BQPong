@@ -199,16 +199,16 @@ if start == 'PLAY':
         
                 ans = input(' Answer: ')
                 if ans == 'X':
-                    target_one_in_gate = int(input('Given an X gate,\n which one of two qubits in a 3-qubit circuit will you put them on to \n capture a value and its neighbours equal to '1' ?\n Type one correct entry from the set {0, 1, 2}: '))
+                    target_one_in_gate = int(input('Given an X gate,\n which one of two qubits in a 3-qubit circuit will you put them on to \n capture a value and its neighbours equal to "1" ?\n Type one correct entry from the set {0, 1, 2}: '))
                     print('OK, now')
-                    target_two_in_gate = int(input('Given an X gate,\n which second one of two qubits in a 3-qubit circuit will you put them on to \n capture a value and its neighbours equal to '1'?\n Type another correct entry from the set {0, 1, 2}: '))
+                    target_two_in_gate = int(input('Given an X gate,\n which second one of two qubits in a 3-qubit circuit will you put them on to \n capture a value and its neighbours equal to "1"?\n Type another correct entry from the set {0, 1, 2}: '))
                     circuit.x(target_one_in_gate)
                     circuit.x(target_two_in_gate)
 
                 if ans == 'H':
-                    target_one_in_gate = int(input('Given an H gate,\n which one of two qubits in a 3-qubit circuit will you put them on to \n capture a value and its neighbours equal to '1' ?\n Type one correct entry from the set {0, 1, 2}: '))
+                    target_one_in_gate = int(input('Given an H gate,\n which one of two qubits in a 3-qubit circuit will you put them on to \n capture a value and its neighbours equal to "1" ?\n Type one correct entry from the set {0, 1, 2}: '))
                     print('OK, now')
-                    target_two_in_gate = int(input('Given an H gate,\n which second one of two qubits in a 3-qubit circuit will you put them on to \n capture a value and its neighbours equal to '1'?\n Type another correct entry from the set {0, 1, 2}: '))
+                    target_two_in_gate = int(input('Given an H gate,\n which second one of two qubits in a 3-qubit circuit will you put them on to \n capture a value and its neighbours equal to "1"?\n Type another correct entry from the set {0, 1, 2}: '))
                     circuit.h(target_one_in_gate)
                     circuit.h(target_two_in_gate)
 
